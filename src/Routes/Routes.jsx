@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router';
 import Home from '../Pages/Home';
 import ErrorPage from '../Components/ErrorPage/ErrorPage';
+import MainLayouts from '../Layouts/MainLayouts';
 
 const Routes = createBrowserRouter([
   {
