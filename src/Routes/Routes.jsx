@@ -3,6 +3,8 @@ import { createBrowserRouter } from 'react-router';
 import ErrorPage from '../Components/ErrorPage/ErrorPage';
 import MainLayouts from '../Layouts/MainLayouts';
 import Home from '../Pages/Home/Home';
+import ContactUs from '../Pages/ContactUs/ContactUs';
+import AboutUs from '../Pages/AboutUs/AboutUs';
 
 const Routes = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const Routes = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/contact',
+        element: <ContactUs />,
+      },
+      {
+        path: '/aboutUs',
+        element: <AboutUs />,
       },
     ],
   },
