@@ -5,17 +5,16 @@ import MainLayouts from '../Layouts/MainLayouts';
 import Home from '../Pages/Home/Home';
 import ContactUs from '../Pages/ContactUs/ContactUs';
 import AboutUs from '../Pages/AboutUs/AboutUs';
+import Loading from '../Components/ErrorPage/Loading';
+import Blog from '../Pages/Blog/Blog';
+import ComingSoon from '../Components/ComingSoon/ComingSoon';
 
 const Routes = createBrowserRouter([
   {
     path: '/',
     element: <MainLayouts />,
     errorElement: <ErrorPage />,
-    hydrateFallbackElement: (
-      <div className="w-full h-full flex justify-center mt-2.5">
-        <span className="loading loading-dots content-center loading-xl"></span>
-      </div>
-    ),
+    hydrateFallbackElement: <Loading />,
     children: [
       {
         index: true,
@@ -26,8 +25,16 @@ const Routes = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: '/blog',
+        element: <Blog />,
+      },
+      {
         path: '/aboutUs',
         element: <AboutUs />,
+      },
+      {
+        path: '/comingSoon',
+        element: <ComingSoon />,
       },
     ],
   },
