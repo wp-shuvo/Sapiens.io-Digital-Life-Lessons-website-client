@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
-import NavLogo from '../../assets/navLogo-black.svg';
+import NavLogo from '../../assets/assetsImage/navLogo-black.svg';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
@@ -130,26 +130,26 @@ const Navbar = () => {
                   <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="m-1">
                       <img
-                        className="h-10 w-10 rounded-full border-2 border-[#9F62F2] group-hover:scale-105 transition-transform duration-200"
+                        className="h-10 w-10 rounded-full border-2 border-[#b6db3c] group-hover:scale-105 transition-transform duration-200"
                         src={user?.photoURL}
                         alt="Profile Picture"
                       />
                     </div>
                     <ul
                       tabIndex="-1"
-                      className="dropdown-content gap-y-1.5 menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm"
+                      className="dropdown-content gap-y-1.5 border-2 border-[#b6db3c] menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm"
                     >
-                      <li className="text-[#ffffff] text-lg font-semibold">
+                      <li className="text-black text-center text-lg font-semibold">
                         {user?.displayName}
                       </li>
-                      <li className="text-[#ffffff] font-semibold mb-2">
+                      <li className="text-black text-center font-semibold mb-2">
                         {user?.email}
                       </li>
 
                       <li>
                         <Link
                           to="/myProfile"
-                          className="px-5 py-2 rounded-lg border border-[#9F62F2] text-[#9F62F2] font-semibold hover:bg-[#9F62F2] hover:text-white transition"
+                          className="px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
                         >
                           My Profile
                         </Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
                       <li>
                         <Link
                           to="/dashboard"
-                          className="px-5 py-2 rounded-lg border border-[#9F62F2] text-[#9F62F2] font-semibold hover:bg-[#9F62F2] hover:text-white transition"
+                          className="px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
                         >
                           Dashboard
                         </Link>
@@ -165,7 +165,7 @@ const Navbar = () => {
                       <li>
                         <button
                           onClick={handleSignOut}
-                          className="btn rounded-lg border border-gray-300 bg-white px-6"
+                          className="btn px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
                         >
                           <IoIosLogOut />{' '}
                           <span className="max-sm:hidden">Sign Out</span>
@@ -177,7 +177,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/auth/login"
-                  className="btn rounded-lg border border-gray-300 bg-white px-6 "
+                  className="btn px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition "
                 >
                   <IoIosLogIn /> <span className="max-sm:hidden">Sign In</span>
                 </Link>

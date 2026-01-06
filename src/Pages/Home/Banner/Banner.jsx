@@ -4,11 +4,11 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Link } from 'react-router';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 
-import bannerImg1 from '../../../assets/sliderimage1.jpeg';
-import bannerImg2 from '../../../assets/sliderimage2.jpeg';
-import bannerImg3 from '../../../assets/sliderimage3.jpeg';
-import bannerImg4 from '../../../assets/sliderimage4.jpeg';
-import bannerImg5 from '../../../assets/sliderimage5.jpeg';
+import bannerImg1 from '../../../assets/assetsImage/sliderimage1.jpeg';
+import bannerImg2 from '../../../assets/assetsImage/sliderimage2.jpeg';
+import bannerImg3 from '../../../assets/assetsImage/sliderimage3.jpeg';
+import bannerImg4 from '../../../assets/assetsImage/sliderimage4.jpeg';
+import bannerImg5 from '../../../assets/assetsImage/sliderimage5.jpeg';
 
 const Banner = () => {
   const slides = [bannerImg1, bannerImg2, bannerImg3, bannerImg4, bannerImg5];

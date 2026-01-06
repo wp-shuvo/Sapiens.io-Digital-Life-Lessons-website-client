@@ -1,5 +1,5 @@
 import React from 'react';
-import FooterLOgo from '../../assets/favicon.svg';
+import FooterLOgo from '../../assets/assetsImage/favicon.svg';
 import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
@@ -64,7 +64,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-10 py-4 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} YourWebsite. All rights reserved.
+        © {new Date().getFullYear()} Sapiens.io. All rights reserved.
       </div>
     </footer>
   );

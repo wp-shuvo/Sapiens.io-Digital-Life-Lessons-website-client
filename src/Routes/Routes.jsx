@@ -8,6 +8,10 @@ import AboutUs from '../Pages/AboutUs/AboutUs';
 import Loading from '../Components/ErrorPage/Loading';
 import Blog from '../Pages/Blog/Blog';
 import ComingSoon from '../Components/ComingSoon/ComingSoon';
+import AuthLayout from '../Layouts/AuthLayout';
+import ForgetPassword from '../Pages/Auth/ForgetPassword/ForgetPassword';
+import Register from '../Pages/Auth/Register/Register';
+import Login from '../Pages/Auth/Login/Login';
 
 const Routes = createBrowserRouter([
   {
@@ -35,6 +39,24 @@ const Routes = createBrowserRouter([
       {
         path: '/comingSoon',
         element: <ComingSoon />,
+      },
+    ],
+  },
+  {
+    path: 'auth',
+    element: <AuthLayout />,
+    children: [
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
+      },
+      {
+        path: 'forget-password',
+        element: <ForgetPassword />,
       },
     ],
   },
