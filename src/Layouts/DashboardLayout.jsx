@@ -71,6 +71,16 @@ const DashboardLayout = () => {
       <span className="text-xs font-bold text-gray-400 px-3 mt-6">GENERAL</span>
 
       <NavLink
+        to="/dashboard/profile"
+        className={({ isActive }) =>
+          `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+            isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+          }`
+        }
+      >
+        <FiSettings /> profile
+      </NavLink>
+      <NavLink
         // to="/dashboard/settings"
         className={({ isActive }) =>
           `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${

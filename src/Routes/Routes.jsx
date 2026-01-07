@@ -20,6 +20,8 @@ import Addlesson from '../Pages/Dashboard/AddLesson/Addlesson';
 import MyLessons from '../Pages/Dashboard/MyLessons/MyLessons';
 import PaymentSuccess from '../Pages/Pricing/PaymentSuccess';
 import PaymentCancel from '../Pages/Pricing/PaymentCancel';
+import Profile from '../Pages/Dashboard/Profile/Profile';
+import UpdateProfile from '../Pages/Dashboard/Profile/UpdateProfile/UpdateProfile';
 
 const Routes = createBrowserRouter([
   {
@@ -103,6 +105,14 @@ const Routes = createBrowserRouter([
       {
         path: 'my-lessons',
         element: <MyLessons />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
+      },
+      {
+        path: 'update-profile',
+        element: <UpdateProfile />,
       },
     ],
   },

@@ -176,7 +176,7 @@ const Navbar = () => {
 
                       <li>
                         <Link
-                          to="/myProfile"
+                          to="/dashboard/profile"
                           className="px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
                         >
                           My Profile
