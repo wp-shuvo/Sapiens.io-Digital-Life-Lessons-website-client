@@ -5,9 +5,11 @@ import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
 import { LuBike } from 'react-icons/lu';
+import useIsPremium from '../../Hooks/useisPremium';
 
 const Navbar = () => {
   const { user, singOutUser } = useAuth();
+  const { isPremium, roleLoading } = useIsPremium();
 
   const handleSignOut = () => {
     singOutUser()
@@ -46,6 +48,20 @@ const Navbar = () => {
           Public Lessons
         </NavLink>
       </li>
+      {isPremium === false && (
+        <li>
+          <NavLink
+            to="/pricing"
+            className={({ isActive }) =>
+              `font-semibold ${
+                isActive ? 'text-[#33929d]' : 'text-black font-extrabold'
+              }`
+            }
+          >
+            Pricing
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink
           to="/aboutUs"
@@ -140,7 +156,10 @@ const Navbar = () => {
                       className="dropdown-content gap-y-1.5 border-2 border-[#b6db3c] menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm"
                     >
                       <li className="text-black text-center text-lg font-semibold">
-                        {user?.displayName}
+                        <span>
+                          {user?.displayName}{' '}
+                          {!roleLoading && isPremium && <span>⭐</span>}
+                        </span>
                       </li>
                       <li className="text-black text-center font-semibold mb-2">
                         {user?.email}

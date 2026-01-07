@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-md p-8 ">
+      <div className="w-full max-w-md p-2 md:p-8 ">
         {/* Title */}
         <h1 className="text-4xl font-bold mb-2">Welcome Back</h1>
         <p className="text-gray-500 mb-8">Login to Sapiens.io</p>

@@ -12,6 +12,12 @@ import AuthLayout from '../Layouts/AuthLayout';
 import ForgetPassword from '../Pages/Auth/ForgetPassword/ForgetPassword';
 import Register from '../Pages/Auth/Register/Register';
 import Login from '../Pages/Auth/Login/Login';
+import PublicLessons from '../Pages/PublicLessons/PublicLessons';
+import Pricing from '../Pages/Pricing/Pricing';
+import PrivateRoutes from './PrivateRoutes';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import Addlesson from '../Pages/Dashboard/AddLesson/Addlesson';
+import MyLessons from '../Pages/Dashboard/MyLessons/MyLessons';
 
 const Routes = createBrowserRouter([
   {
@@ -40,6 +46,18 @@ const Routes = createBrowserRouter([
         path: '/comingSoon',
         element: <ComingSoon />,
       },
+      {
+        path: '/publicLessons',
+        element: <PublicLessons />,
+      },
+      {
+        path: '/pricing',
+        element: (
+          <PrivateRoutes>
+            <Pricing />
+          </PrivateRoutes>
+        ),
+      },
     ],
   },
   {
@@ -57,6 +75,24 @@ const Routes = createBrowserRouter([
       {
         path: 'forget-password',
         element: <ForgetPassword />,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: 'add-lesson',
+        element: <Addlesson />,
+      },
+      {
+        path: 'my-lessons',
+        element: <MyLessons />,
       },
     ],
   },

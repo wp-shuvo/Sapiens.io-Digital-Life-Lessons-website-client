@@ -12,10 +12,10 @@ const AuthLayout = () => {
         <img src={navLogo} className="h-12" alt="" />
       </Link>
       <div className="flex flex-col-reverse md:flex-row items-center justify-evenly mt-8 gap-8">
-        <div className="flex-1 w-1/2">
+        <div className="flex-1">
           <Outlet />
         </div>
-        <div className="flex-1 w-1/2">
+        <div className="flex-1">
           <Lottie animationData={authImage} loop={true} autoplay={true} />
         </div>
       </div>

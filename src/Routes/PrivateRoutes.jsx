@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { Navigate, useLocation } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
+import Loading from '../Components/ErrorPage/Loading';
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = use(AuthContext);
@@ -8,16 +9,12 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className=" w-full h-full flex justify-center mt-2.5 ">
-        <span className="loading loading-dots content-center loading-xl"></span>
-      </div>
-    );
+    return <Loading />;
   }
   if (user) {
     return children;
   }
-  return <Navigate state={location?.pathname} to="/login"></Navigate>;
+  return <Navigate state={location?.pathname} to="/auth/login"></Navigate>;
 };
 
 export default PrivateRoutes;
