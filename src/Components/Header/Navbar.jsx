@@ -159,7 +159,7 @@ const Navbar = () => {
                         <span>
                           {user?.displayName}{' '}
                           {!roleLoading && isPremium && (
-                            <span className="text-[12px] text-gray-400">
+                            <span className="text-[12px] text-yellow-600">
                               Premium Member
                             </span>
                           )}

@@ -1,10 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router';
 
 import successAmination from '../../assets/Success/Success.json';
 import Lottie from 'lottie-react';
+import useAuth from '../../Hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Loading from '../../Components/ErrorPage/Loading';
 
 const PaymentSuccess = () => {
+  const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const { user } = useAuth();
+  const sessionId = searchParams.get('session_id');
+  const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    const markPremium = async () => {
+      if (!sessionId) return;
+
+      try {
+        const res = await axiosSecure.patch('/payment-success', {
+          session_id: sessionId,
+        });
+
+        if (res.data.success) {
+          setSuccess(true);
+        } else {
+          setSuccess(false);
+        }
+      } catch (err) {
+        console.error('Payment success error:', err);
+        setSuccess(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    markPremium();
+  }, [sessionId, axiosSecure]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-6 py-16">
       <Lottie

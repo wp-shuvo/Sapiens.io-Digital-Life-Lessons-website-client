@@ -46,21 +46,25 @@ const Pricing = () => {
       <div className="flex flex-col md:flex-row justify-center gap-6 p-8">
         {/* Free Plan */}
         <div className="card w-80 bg-base-100 shadow-sm">
-          <div className="card-body">
-            <span className="badge badge-xs badge-info">Free</span>
-            <h2 className="text-2xl font-bold mt-2">Free Plan</h2>
-            <p className="text-sm text-gray-500 mt-1">
-              Perfect for getting started
-            </p>
+          <div className="card-body flex flex-col">
+            <div>
+              <span className="badge badge-xs badge-info">Free</span>
+              <h2 className="text-2xl font-bold mt-2">Free Plan</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Perfect for getting started
+              </p>
+            </div>
 
-            <ul className="mt-4 flex flex-col gap-2 text-sm">
-              <li>✔ Access up to 5 lessons</li>
-              <li>✔ Basic templates</li>
-              <li>✔ Standard support</li>
-              <li className="opacity-50 line-through">Premium lessons</li>
-              <li className="opacity-50 line-through">Ad-free experience</li>
-              <li className="opacity-50 line-through">Priority listing</li>
-            </ul>
+            <div>
+              <ul className="mt-4 flex flex-col gap-2 text-sm">
+                <li>✔ Access to public lessons</li>
+                <li>✔ Basic templates</li>
+                <li>✔ Standard support</li>
+                <li className="opacity-50 line-through">Premium lessons</li>
+                <li className="opacity-50 line-through">Ad-free experience</li>
+                <li className="opacity-50 line-through">Priority listing</li>
+              </ul>
+            </div>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import cancelAmination from '../../assets/Success/Success.json';
+import cancelAmination from '../../assets/Cancel/Failed.json';
 import Lottie from 'lottie-react';
 
 const PaymentCancel = () => {
@@ -14,7 +14,7 @@ const PaymentCancel = () => {
         className="w-64 md:w-96 mb-8"
       />
 
-      <h1 className="text-4xl md:text-5xl font-bold text-green-600 mb-4 text-center">
+      <h1 className="text-4xl md:text-5xl font-bold text-red-600 mb-4 text-center">
         Payment Cancelled
       </h1>
       <p className="text-gray-700 text-center mb-8 max-w-lg">
