@@ -18,6 +18,8 @@ import PrivateRoutes from './PrivateRoutes';
 import DashboardLayout from '../Layouts/DashboardLayout';
 import Addlesson from '../Pages/Dashboard/AddLesson/Addlesson';
 import MyLessons from '../Pages/Dashboard/MyLessons/MyLessons';
+import PaymentSuccess from '../Pages/Pricing/PaymentSuccess';
+import PaymentCancel from '../Pages/Pricing/PaymentCancel';
 
 const Routes = createBrowserRouter([
   {
@@ -49,6 +51,14 @@ const Routes = createBrowserRouter([
       {
         path: '/publicLessons',
         element: <PublicLessons />,
+      },
+      {
+        path: '/payment-success',
+        element: <PaymentSuccess />,
+      },
+      {
+        path: '/payment-cancel',
+        element: <PaymentCancel />,
       },
       {
         path: '/pricing',

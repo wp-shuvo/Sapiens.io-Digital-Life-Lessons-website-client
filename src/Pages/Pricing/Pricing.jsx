@@ -1,10 +1,39 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useIsPremium from '../../Hooks/useisPremium';
+import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
 const Pricing = () => {
   const { user } = useAuth();
+  const { isPremium } = useIsPremium();
   const axiosSecure = useAxiosSecure();
+
+  //query to get user info
+  const { data: currentUser = {} } = useQuery({
+    queryKey: ['currentUser', user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/email/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const handleUpgrade = async () => {
+    const userInfo = {
+      email: currentUser?.email,
+      userId: currentUser?._id,
+    };
+
+    const res = await axiosSecure.post('/create-checkout-session', userInfo);
+    console.log(res.data);
+    window.location.href = res.data.url;
+  };
+
+  const handleAlreadyPremium = () => {
+    toast.success('You are already a premium member!');
+  };
   return (
     <div>
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mt-10">
@@ -55,11 +84,16 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-6 text-center">
-              {user.isPremium ? (
-                <span className="badge badge-success text-lg">Premium ⭐</span>
+              {isPremium === true ? (
+                <span
+                  onClick={handleAlreadyPremium}
+                  className="btn btn-primary text-black btn-block"
+                >
+                  All Ready Premium ⭐
+                </span>
               ) : (
                 <button
-                  // onClick={handleUpgrade}
+                  onClick={handleUpgrade}
                   className="btn btn-primary text-black btn-block"
                 >
                   Upgrade to Premium

@@ -60,14 +60,14 @@ const Banner = () => {
 
           <div className="flex gap-4 pt-4">
             <Link
-              to="/public-lessons"
+              to="/publicLessons"
               className="bg-[#C8E661] text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-[#b7d854] transition"
             >
               Explore Public Lessons
             </Link>
 
             <Link
-              to="/create-lesson"
+              to="/dashboard/add-lesson"
               className="border border-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition"
             >
               Share Your Lesson

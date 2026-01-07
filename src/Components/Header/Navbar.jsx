@@ -158,7 +158,16 @@ const Navbar = () => {
                       <li className="text-black text-center text-lg font-semibold">
                         <span>
                           {user?.displayName}{' '}
-                          {!roleLoading && isPremium && <span>⭐</span>}
+                          {!roleLoading && isPremium && (
+                            <span className="text-[12px] text-gray-400">
+                              Premium Member
+                            </span>
+                          )}
+                          {isPremium === false && (
+                            <span className="text-[12px] text-gray-400">
+                              Free Member
+                            </span>
+                          )}
                         </span>
                       </li>
                       <li className="text-black text-center font-semibold mb-2">

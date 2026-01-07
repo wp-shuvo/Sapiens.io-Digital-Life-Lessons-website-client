@@ -32,7 +32,7 @@ const AboutUs = () => {
               Contact Us
             </a>
             <a
-              href="/public-lessons"
+              href="/publicLessons"
               className="px-6 py-3 border border-gray-300 rounded-xl font-semibold hover:bg-gray-100 transition"
             >
               Explore Lessons
