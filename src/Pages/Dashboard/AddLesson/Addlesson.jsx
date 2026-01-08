@@ -4,11 +4,13 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useIsPremium from '../../../Hooks/useisPremium';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
 const Addlesson = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { isPremium } = useIsPremium();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -18,11 +20,14 @@ const Addlesson = () => {
   } = useForm();
 
   const onSubmit = async data => {
+    const defaultImage = 'https://i.ibb.co.com/GvyP637K/defult-image.jpg';
     const lessonData = {
       ...data,
+      image: data.image || defaultImage,
       accessLevel: isPremium ? data.accessLevel : 'Free',
       authorName: user?.displayName,
       authorEmail: user?.email,
+      authorPhoto: user?.photoURL,
       createdAt: new Date(),
     };
 
@@ -30,6 +35,7 @@ const Addlesson = () => {
       await axiosSecure.post('/lessons', lessonData);
       toast.success('🎉 Lesson created successfully!');
       reset();
+      navigate('/dashboard/my-lessons');
     } catch (error) {
       console.error('Error lesson>>>>>', error);
       toast.error('Failed to create lesson');
@@ -41,7 +47,7 @@ const Addlesson = () => {
       <h2 className="text-3xl font-bold mb-6">Create New Life Lesson</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        {/* Lesson Title */}
+        {/*  Title */}
         <div>
           <label className="label block mb-2 font-medium text-gray-700">
             Lesson Title
@@ -91,7 +97,7 @@ const Addlesson = () => {
           </select>
         </div>
 
-        {/* Emotional Tone */}
+        {/* Tone */}
         <div>
           <label className="label block mb-2 font-medium text-gray-700">
             Emotional Tone
@@ -134,7 +140,7 @@ const Addlesson = () => {
           </select>
         </div>
 
-        {/* Access Level */}
+        {/* Access */}
         <div>
           <label className="label block mb-2 font-medium text-gray-700">
             Access Level

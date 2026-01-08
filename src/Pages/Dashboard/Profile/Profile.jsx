@@ -1,10 +1,26 @@
 import React from 'react';
 import useIsPremium from '../../../Hooks/useisPremium';
 import useAuth from '../../../Hooks/useAuth';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Components/ErrorPage/Loading';
 
 const Profile = () => {
   const { isPremium } = useIsPremium();
   const { user } = useAuth();
+  const axiousSecure = useAxiosSecure();
+
+  const { data: myLessons = [], isLoading } = useQuery({
+    queryKey: ['myLessons', user?.email],
+    queryFn: async () => {
+      const res = await axiousSecure.get(`/lessons/author/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleUpdateProfile = () => {
     //navigate to profile update page
@@ -22,7 +38,7 @@ const Profile = () => {
 
         {/* Main*/}
         <div className="bg-white shadow-md rounded-2xl p-8 flex flex-col md:flex-row gap-10">
-          {/* Left: Photo & Name */}
+          {/* Photo & Name */}
           <div className="flex flex-col items-center gap-4 md:w-1/3">
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-[#C8E661]">
               <img
@@ -51,19 +67,23 @@ const Profile = () => {
 
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             <div>
-              <p className="text-gray-500 font-semibold">Name</p>
+              <p className="text-gray-500 font-semibold mb-1.5">Name</p>
               <p className="text-gray-900">{user.displayName}</p>
             </div>
             <div>
-              <p className="text-gray-500 font-semibold">Email</p>
+              <p className="text-gray-500 font-semibold mb-1.5">Email</p>
               <p className="text-gray-900">{user.email}</p>
             </div>
             <div>
-              <p className="text-gray-500 font-semibold">lessons created</p>
-              <p className="text-gray-900">0</p>
+              <p className="text-gray-500 font-semibold mb-1.5">
+                lessons created
+              </p>
+              <p className="text-gray-900">{myLessons.length}</p>
             </div>
             <div>
-              <p className="text-gray-500 font-semibold">lessons saved</p>
+              <p className="text-gray-500 font-semibold mb-1.5">
+                lessons saved
+              </p>
               <p className="text-gray-900">0</p>
             </div>
           </div>

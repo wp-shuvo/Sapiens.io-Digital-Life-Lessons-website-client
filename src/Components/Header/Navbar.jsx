@@ -4,7 +4,6 @@ import NavLogo from '../../assets/assetsImage/navLogo-black.svg';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
-import { LuBike } from 'react-icons/lu';
 import useIsPremium from '../../Hooks/useisPremium';
 
 const Navbar = () => {
@@ -61,6 +60,35 @@ const Navbar = () => {
             Pricing
           </NavLink>
         </li>
+      )}
+
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/add-lesson"
+              className={({ isActive }) =>
+                `font-semibold ${
+                  isActive ? 'text-[#33929d]' : 'text-black font-extrabold'
+                }`
+              }
+            >
+              Add Lesson
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/my-lessons"
+              className={({ isActive }) =>
+                `font-semibold ${
+                  isActive ? 'text-[#33929d]' : 'text-black font-extrabold'
+                }`
+              }
+            >
+              My Lesson
+            </NavLink>
+          </li>
+        </>
       )}
       <li>
         <NavLink
