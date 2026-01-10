@@ -18,7 +18,20 @@ const Profile = () => {
     },
   });
 
+  // get user
+  const { data: userData = {}, isLoading: userDataLoading } = useQuery({
+    queryKey: ['userData', user?.email],
+    queryFn: async () => {
+      const res = await axiousSecure.get(`/users/email/${user?.email}`);
+      return res.data;
+    },
+  });
+  console.log(userData);
+
   if (isLoading) {
+    return <Loading />;
+  }
+  if (userDataLoading) {
     return <Loading />;
   }
 
@@ -42,7 +55,7 @@ const Profile = () => {
           <div className="flex flex-col items-center gap-4 md:w-1/3">
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-[#C8E661]">
               <img
-                src={user.photoURL}
+                src={userData?.photoURL}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -68,23 +81,25 @@ const Profile = () => {
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             <div>
               <p className="text-gray-500 font-semibold mb-1.5">Name</p>
-              <p className="text-gray-900">{user.displayName}</p>
+              <p className="text-gray-900">{userData?.displayName}</p>
             </div>
             <div>
               <p className="text-gray-500 font-semibold mb-1.5">Email</p>
-              <p className="text-gray-900">{user.email}</p>
+              <p className="text-gray-900">{userData?.email}</p>
             </div>
             <div>
               <p className="text-gray-500 font-semibold mb-1.5">
                 lessons created
               </p>
-              <p className="text-gray-900">{myLessons.length}</p>
+              <p className="text-gray-900">{myLessons?.length}</p>
             </div>
             <div>
               <p className="text-gray-500 font-semibold mb-1.5">
                 lessons saved
               </p>
-              <p className="text-gray-900">0</p>
+              <p className="text-gray-900">
+                {userData?.savedLessons?.length || 0}
+              </p>
             </div>
           </div>
         </div>

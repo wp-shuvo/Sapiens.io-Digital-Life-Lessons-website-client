@@ -22,6 +22,8 @@ import PaymentSuccess from '../Pages/Pricing/PaymentSuccess';
 import PaymentCancel from '../Pages/Pricing/PaymentCancel';
 import Profile from '../Pages/Dashboard/Profile/Profile';
 import UpdateProfile from '../Pages/Dashboard/Profile/UpdateProfile/UpdateProfile';
+import LessonDetails from '../Pages/LessonDetails/LessonDetails';
+import SaveLessons from '../Pages/Dashboard/SaveLesson/SaveLessons';
 
 const Routes = createBrowserRouter([
   {
@@ -53,6 +55,16 @@ const Routes = createBrowserRouter([
       {
         path: '/publicLessons',
         element: <PublicLessons />,
+      },
+      {
+        path: '/publicLessons/:id',
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5001/lessons/${params.id}`),
+        element: (
+          <PrivateRoutes>
+            <LessonDetails />
+          </PrivateRoutes>
+        ),
       },
       {
         path: '/payment-success',
@@ -113,6 +125,10 @@ const Routes = createBrowserRouter([
       {
         path: 'update-profile',
         element: <UpdateProfile />,
+      },
+      {
+        path: 'save-lessons',
+        element: <SaveLessons />,
       },
     ],
   },

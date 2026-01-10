@@ -12,7 +12,7 @@ import logo from '../assets/assetsImage/navLogo-black.svg';
 import useAuth from '../Hooks/useAuth';
 import { MdAddTask } from 'react-icons/md';
 import toast from 'react-hot-toast';
-import { FaTasks } from 'react-icons/fa';
+import { FaRegStar, FaTasks } from 'react-icons/fa';
 
 const DashboardLayout = () => {
   const { user, singOutUser } = useAuth();
@@ -65,6 +65,16 @@ const DashboardLayout = () => {
           }
         >
           <FaTasks /> My lessons
+        </NavLink>
+        <NavLink
+          to="/dashboard/save-lessons"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+              isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+            }`
+          }
+        >
+          <FaRegStar /> Fav Lessons
         </NavLink>
       </>
 
