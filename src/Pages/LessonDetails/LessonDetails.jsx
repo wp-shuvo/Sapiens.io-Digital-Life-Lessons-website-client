@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
@@ -9,7 +9,6 @@ const LessonDetails = () => {
   const lesson = useLoaderData();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
   const [comment, setComment] = useState('');
 
   // views
@@ -50,7 +49,7 @@ const LessonDetails = () => {
 
   // Comments
 
-  const { data: comments = [] } = useQuery({
+  const { data: comments = [], refetch } = useQuery({
     queryKey: ['comments', lesson._id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/comments/${lesson._id}`);
@@ -59,19 +58,31 @@ const LessonDetails = () => {
   });
 
   // Post Comment
-  const commentMutation = useMutation({
-    mutationFn: () =>
-      axiosSecure.post('/comments', {
+
+  const handleComment = async () => {
+    if (!user) {
+      toast.error('Please log in to comment');
+      return;
+    }
+
+    try {
+      const res = await axiosSecure.post('/comments', {
         lessonId: lesson._id,
         text: comment,
         userName: user.displayName,
         userPhoto: user.photoURL,
-      }),
-    onSuccess: () => {
+      });
+
+      console.log(res.data);
+
+      refetch();
       setComment('');
-      queryClient.invalidateQueries(['comments', lesson._id]);
-    },
-  });
+      toast.success('Comment posted successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to post comment');
+    }
+  };
 
   // Related Lessons
 
@@ -196,7 +207,7 @@ const LessonDetails = () => {
               placeholder="Write a comment..."
             />
             <button
-              onClick={() => commentMutation.mutate()}
+              onClick={() => handleComment()}
               className="btn btn-primary  text-black"
             >
               Post
