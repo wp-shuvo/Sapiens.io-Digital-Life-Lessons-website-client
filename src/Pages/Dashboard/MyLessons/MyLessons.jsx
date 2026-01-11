@@ -4,14 +4,19 @@ import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/ErrorPage/Loading';
 import { Link, useNavigate } from 'react-router';
-import { FaEdit, FaEye } from 'react-icons/fa';
+import { FaEdit, FaEye, FaRegTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyLessons = () => {
   const { user } = useAuth();
   const axiousSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { data: myLessons = [], isLoading } = useQuery({
+  const {
+    data: myLessons = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['myLessons', user?.email],
     queryFn: async () => {
       const res = await axiousSecure.get(`/lessons/author/${user?.email}`);
@@ -22,6 +27,31 @@ const MyLessons = () => {
   //handle edit/update lesson
   const handleEditLesson = lessonId => {
     navigate(`/dashboard/update-lesson/${lessonId}`);
+  };
+
+  //handle delete lesson
+  const handleDeleteLesson = async lessonId => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to delete this lesson?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async result => {
+      if (result.isConfirmed) {
+        const res = await axiousSecure.delete(`/lessons/${lessonId}`);
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Lesson deleted successfully',
+            icon: 'success',
+          });
+        }
+        refetch();
+      }
+    });
   };
 
   if (isLoading) {
@@ -112,6 +142,13 @@ const MyLessons = () => {
                 >
                   <FaEdit />
                   <span className=" hidden md:block"> Edit</span>
+                </button>
+                <button
+                  onClick={() => handleDeleteLesson(lesson._id)}
+                  className="mt-4 md:mt-auto bg-[#C8E661]  text-gray-900 px-5 py-2 rounded-lg font-semibold hover:bg-red-400 transition flex items-center justify-center gap-1"
+                >
+                  <FaRegTrashAlt />
+                  <span className=" hidden md:block"> Remove</span>
                 </button>
                 <Link
                   to={`/publicLessons/${lesson._id}`}
