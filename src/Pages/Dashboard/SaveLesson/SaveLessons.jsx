@@ -62,7 +62,7 @@ const SaveLessons = () => {
 
       {savedLessons.length === 0 && (
         <p className="text-gray-500 font-medium">
-          You have not created any lessons yet ❌.
+          You don't have any saved or favourite lessons yet ❌.
         </p>
       )}
 

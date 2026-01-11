@@ -24,6 +24,7 @@ import Profile from '../Pages/Dashboard/Profile/Profile';
 import UpdateProfile from '../Pages/Dashboard/Profile/UpdateProfile/UpdateProfile';
 import LessonDetails from '../Pages/LessonDetails/LessonDetails';
 import SaveLessons from '../Pages/Dashboard/SaveLesson/SaveLessons';
+import UpdateLesson from '../Pages/Dashboard/UpdateLesson/UpdateLesson';
 
 const Routes = createBrowserRouter([
   {
@@ -129,6 +130,12 @@ const Routes = createBrowserRouter([
       {
         path: 'save-lessons',
         element: <SaveLessons />,
+      },
+      {
+        path: 'update-lesson/:id',
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5001/lessons/${params.id}`),
+        element: <UpdateLesson />,
       },
     ],
   },

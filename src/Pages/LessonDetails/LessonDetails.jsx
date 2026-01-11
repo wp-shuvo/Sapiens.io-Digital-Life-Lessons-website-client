@@ -104,7 +104,6 @@ const LessonDetails = () => {
       lessonId: lesson._id,
       userEmail: user.email,
     });
-    // toast.success('Lesson saved successfully!');
 
     if (res.data.modifiedCount > 0) {
       toast.success('Lesson saved successfully!');

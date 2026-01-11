@@ -3,11 +3,13 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/ErrorPage/Loading';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { FaEdit, FaEye } from 'react-icons/fa';
 
 const MyLessons = () => {
   const { user } = useAuth();
   const axiousSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const { data: myLessons = [], isLoading } = useQuery({
     queryKey: ['myLessons', user?.email],
@@ -16,6 +18,11 @@ const MyLessons = () => {
       return res.data;
     },
   });
+
+  //handle edit/update lesson
+  const handleEditLesson = lessonId => {
+    navigate(`/dashboard/update-lesson/${lessonId}`);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -92,16 +99,29 @@ const MyLessons = () => {
 
             {/* Right: Action */}
             <div className="flex md:flex-col justify-between items-start md:items-end">
-              <span className="text-sm font-medium text-gray-500">
-                {lesson.privacy}
-              </span>
+              <div>
+                <span className="text-sm font-medium text-gray-500">
+                  {lesson.privacy}
+                </span>
+              </div>
 
-              <Link
-                to={`/publicLessons/${lesson._id}`}
-                className="mt-4 md:mt-auto bg-[#C8E661] text-gray-900 px-5 py-2 rounded-lg font-semibold hover:bg-[#b7d854] transition"
-              >
-                See Details →
-              </Link>
+              <div className="flex gap-1.5">
+                <button
+                  onClick={() => handleEditLesson(lesson._id)}
+                  className="mt-4 md:mt-auto bg-[#C8E661]  text-gray-900 px-5 py-2 rounded-lg font-semibold hover:bg-[#b7d854] transition flex items-center justify-center gap-1"
+                >
+                  <FaEdit />
+                  <span className=" hidden md:block"> Edit</span>
+                </button>
+                <Link
+                  to={`/publicLessons/${lesson._id}`}
+                  className="mt-4 md:mt-auto bg-[#C8E661]  text-gray-900 px-5 py-2 rounded-lg font-semibold hover:bg-[#b7d854] transition flex items-center justify-center gap-1"
+                >
+                  {' '}
+                  <FaEye />
+                  <span className=" hidden md:block">See Details</span>
+                </Link>
+              </div>
             </div>
           </div>
         ))}

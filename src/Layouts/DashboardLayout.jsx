@@ -13,6 +13,7 @@ import useAuth from '../Hooks/useAuth';
 import { MdAddTask } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { FaRegStar, FaTasks } from 'react-icons/fa';
+import { CgProfile } from 'react-icons/cg';
 
 const DashboardLayout = () => {
   const { user, singOutUser } = useAuth();
@@ -88,7 +89,7 @@ const DashboardLayout = () => {
           }`
         }
       >
-        <FiSettings /> profile
+        <CgProfile /> profile
       </NavLink>
       <NavLink
         // to="/dashboard/settings"
