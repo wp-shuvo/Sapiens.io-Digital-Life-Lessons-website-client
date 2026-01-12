@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -10,6 +10,8 @@ const LessonDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [comment, setComment] = useState('');
+  const [reportReason, setReportReason] = useState('');
+  const reportRef = useRef();
 
   // views
   const formatview = num => {
@@ -112,6 +114,29 @@ const LessonDetails = () => {
     }
   };
 
+  // report
+  const handleReport = async () => {
+    if (!user) {
+      toast.error('Please log in to report');
+      return;
+    }
+
+    if (!reportReason) {
+      toast.error('Please select a reason');
+      return;
+    }
+
+    await axiosSecure.post('/lessons/report', {
+      lessonId: lesson._id,
+      reporterEmail: user.email,
+      reason: reportReason,
+    });
+
+    toast.success('Report submitted ✅');
+    setReportReason('');
+    reportRef.current?.close();
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 space-y-8">
       {/* IMAGE */}
@@ -191,7 +216,94 @@ const LessonDetails = () => {
         >
           🔖 Save
         </button>
-        <button className="btn border border-gray-300">🚩 Report</button>
+        <button
+          className="btn border border-gray-300"
+          onClick={() => reportRef.current?.showModal()}
+        >
+          🚩 Report
+        </button>
+
+        {/* <dialog ref={reportRef} className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Why are you reporting?</h3>
+
+            <select
+              value={reportReason}
+              onChange={e => setReportReason(e.target.value)}
+              className="select select-error w-full mt-4"
+            >
+              <option value="">Select a reason</option>
+              <option value="Inappropriate Content">
+                Inappropriate Content
+              </option>
+              <option value="Hate Speech or Harassment">
+                Hate Speech or Harassment
+              </option>
+              <option value="Misleading or False Information">
+                Misleading or False Information
+              </option>
+              <option value="Spam or Promotional Content">
+                Spam or Promotional Content
+              </option>
+              <option value="Sensitive or Disturbing Content">
+                Sensitive or Disturbing Content
+              </option>
+              <option value="Other">Other</option>
+            </select>
+
+            <div className="modal-action">
+              <button onClick={handleReport} className="btn btn-error">
+                Submit Report
+              </button>
+              <form method="dialog">
+                <button className="btn">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </dialog> */}
+        <dialog ref={reportRef} className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Why are you reporting?</h3>
+
+            <div className="mt-4 space-y-3">
+              {[
+                'Inappropriate Content',
+                'Hate Speech or Harassment',
+                'Misleading or False Information',
+                'Spam or Promotional Content',
+                'Sensitive or Disturbing Content',
+                'Other',
+              ].map(reason => (
+                <label
+                  key={reason}
+                  className="flex items-center gap-3 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="reportReason"
+                    className="radio radio-success"
+                    value={reason}
+                    checked={reportReason === reason}
+                    onChange={e => setReportReason(e.target.value)}
+                  />
+                  <span>{reason}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="modal-action">
+              <button onClick={handleReport} className="btn btn-error">
+                Submit Report
+              </button>
+              <button
+                onClick={() => reportRef.current?.close()}
+                className="btn"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
       </div>
 
       {/* COMMENTS */}
