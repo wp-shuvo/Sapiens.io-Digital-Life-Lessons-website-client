@@ -61,7 +61,7 @@ const Routes = createBrowserRouter([
       {
         path: '/publicLessons/:id',
         loader: async ({ params }) =>
-          fetch(`http://localhost:5001/lessons/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/lessons/${params.id}`),
         element: (
           <PrivateRoutes>
             <LessonDetails />
@@ -139,7 +139,7 @@ const Routes = createBrowserRouter([
       {
         path: 'update-lesson/:id',
         loader: async ({ params }) =>
-          fetch(`http://localhost:5001/lessons/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/lessons/${params.id}`),
         element: <UpdateLesson />,
       },
     ],
