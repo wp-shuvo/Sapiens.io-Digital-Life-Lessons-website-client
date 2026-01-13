@@ -222,45 +222,6 @@ const LessonDetails = () => {
         >
           🚩 Report
         </button>
-
-        {/* <dialog ref={reportRef} className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Why are you reporting?</h3>
-
-            <select
-              value={reportReason}
-              onChange={e => setReportReason(e.target.value)}
-              className="select select-error w-full mt-4"
-            >
-              <option value="">Select a reason</option>
-              <option value="Inappropriate Content">
-                Inappropriate Content
-              </option>
-              <option value="Hate Speech or Harassment">
-                Hate Speech or Harassment
-              </option>
-              <option value="Misleading or False Information">
-                Misleading or False Information
-              </option>
-              <option value="Spam or Promotional Content">
-                Spam or Promotional Content
-              </option>
-              <option value="Sensitive or Disturbing Content">
-                Sensitive or Disturbing Content
-              </option>
-              <option value="Other">Other</option>
-            </select>
-
-            <div className="modal-action">
-              <button onClick={handleReport} className="btn btn-error">
-                Submit Report
-              </button>
-              <form method="dialog">
-                <button className="btn">Cancel</button>
-              </form>
-            </div>
-          </div>
-        </dialog> */}
         <dialog ref={reportRef} className="modal">
           <div className="modal-box">
             <h3 className="font-bold text-lg">Why are you reporting?</h3>

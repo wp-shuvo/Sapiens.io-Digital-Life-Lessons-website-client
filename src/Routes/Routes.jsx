@@ -25,6 +25,7 @@ import UpdateProfile from '../Pages/Dashboard/Profile/UpdateProfile/UpdateProfil
 import LessonDetails from '../Pages/LessonDetails/LessonDetails';
 import SaveLessons from '../Pages/Dashboard/SaveLesson/SaveLessons';
 import UpdateLesson from '../Pages/Dashboard/UpdateLesson/UpdateLesson';
+import DashboardHome from '../Pages/Dashboard/Dashboard/DashboardHome';
 
 const Routes = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const Routes = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      {
+        index: true,
+        element: <DashboardHome />,
+      },
       {
         path: 'add-lesson',
         element: <Addlesson />,

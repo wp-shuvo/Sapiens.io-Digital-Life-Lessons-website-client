@@ -12,6 +12,7 @@ const Profile = () => {
   const { user } = useAuth();
   const axiousSecure = useAxiosSecure();
 
+  // get my lessons
   const { data: myLessons = [], isLoading } = useQuery({
     queryKey: ['myLessons', user?.email],
     queryFn: async () => {
