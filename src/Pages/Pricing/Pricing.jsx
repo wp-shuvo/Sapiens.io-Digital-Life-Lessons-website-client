@@ -4,11 +4,13 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useIsPremium from '../../Hooks/useisPremium';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
+import useRole from '../../Hooks/useRole';
 
 const Pricing = () => {
   const { user } = useAuth();
   const { isPremium } = useIsPremium();
   const axiosSecure = useAxiosSecure();
+  const { role } = useRole();
 
   //query to get user info
   const { data: currentUser = {} } = useQuery({
@@ -43,7 +45,7 @@ const Pricing = () => {
         Choose the plan that works best for you
       </p>
 
-      <div className="flex flex-col md:flex-row justify-center gap-6 p-8">
+      <div className="flex flex-col md:flex-row justify-center max-sm:items-center gap-6 p-8">
         {/* Free Plan */}
         <div className="card w-80 bg-base-100 shadow-sm">
           <div className="card-body flex flex-col">
@@ -88,7 +90,7 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-6 text-center">
-              {isPremium === true ? (
+              {isPremium === true || role === 'admin' ? (
                 <span
                   onClick={handleAlreadyPremium}
                   className="btn btn-primary text-black btn-block"

@@ -4,6 +4,7 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/ErrorPage/Loading';
+import WeeklyActivityChartUser from './WeeklyActivityChartUser';
 
 const DashboardUser = () => {
   const { user } = useAuth();
@@ -69,7 +70,7 @@ const DashboardUser = () => {
         <h2 className="text-xl font-bold mb-3">Recently Added</h2>
         <div className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* map recent lessons here */}
-          {myLessons.slice(0, 4).map((lesson, index) => (
+          {myLessons.slice(0, 2).map((lesson, index) => (
             <div
               key={lesson._id}
               className="bg-white rounded-2xl shadow-md p-6 flex flex-col md:flex-row gap-6"
@@ -120,8 +121,11 @@ const DashboardUser = () => {
       {/* Analytics */}
       <div className="card bg-base-200 p-4">
         <h2 className="font-bold mb-2">Your Activity</h2>
-        {/* Chart will go here */}
+
         <p className="text-sm text-gray-500">Weekly lessons / reflections</p>
+        <div>
+          <WeeklyActivityChartUser />
+        </div>
       </div>
     </div>
   );

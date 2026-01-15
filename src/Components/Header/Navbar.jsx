@@ -5,10 +5,17 @@ import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
 import useIsPremium from '../../Hooks/useisPremium';
+import Loading from '../ErrorPage/Loading';
+import useRole from '../../Hooks/useRole';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const Navbar = () => {
   const { user, singOutUser } = useAuth();
   const { isPremium, roleLoading } = useIsPremium();
+  const { role } = useRole();
+
+  const axiousSecure = useAxiosSecure();
 
   const handleSignOut = () => {
     singOutUser()
@@ -20,6 +27,19 @@ const Navbar = () => {
         console.log(error);
       });
   };
+
+  // get user
+  const { data: userData = {}, isLoading: userDataLoading } = useQuery({
+    queryKey: ['userData', user?.email],
+    queryFn: async () => {
+      const res = await axiousSecure.get(`/users/email/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  if (userDataLoading) {
+    return <Loading></Loading>;
+  }
 
   const links = (
     <>
@@ -47,7 +67,7 @@ const Navbar = () => {
           Public Lessons
         </NavLink>
       </li>
-      {isPremium === false && (
+      {isPremium === false && role === 'user' && (
         <li>
           <NavLink
             to="/pricing"
@@ -153,7 +173,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm font-extrabold dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm font-extrabold dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-50"
             >
               {links}
             </ul>
@@ -175,7 +195,7 @@ const Navbar = () => {
                     <div tabIndex={0} role="button" className="m-1">
                       <img
                         className="h-10 w-10 rounded-full border-2 border-[#b6db3c] group-hover:scale-105 transition-transform duration-200"
-                        src={user?.photoURL}
+                        src={userData?.photoURL}
                         alt="Profile Picture"
                       />
                     </div>
@@ -185,15 +205,20 @@ const Navbar = () => {
                     >
                       <li className="text-black text-center text-lg font-semibold">
                         <span>
-                          {user?.displayName}{' '}
-                          {!roleLoading && isPremium && (
+                          {userData?.displayName}{' '}
+                          {!roleLoading && isPremium && role === 'user' && (
                             <span className="text-[12px] text-yellow-600">
                               Premium Member
                             </span>
                           )}
-                          {isPremium === false && (
+                          {isPremium === false && role === 'user' && (
                             <span className="text-[12px] text-gray-400">
                               Free Member
+                            </span>
+                          )}
+                          {!roleLoading && role === 'admin' && (
+                            <span className="text-[12px] text-yellow-600">
+                              Admin 👑
                             </span>
                           )}
                         </span>

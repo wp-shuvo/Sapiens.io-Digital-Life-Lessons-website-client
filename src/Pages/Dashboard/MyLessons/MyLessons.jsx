@@ -141,7 +141,7 @@ const MyLessons = () => {
                   className="mt-4 md:mt-auto bg-[#C8E661]  text-gray-900 px-5 py-2 rounded-lg font-semibold hover:bg-[#b7d854] transition flex items-center justify-center gap-1"
                 >
                   <FaEdit />
-                  <span className=" hidden md:block"> Edit</span>
+                  <span className=" hidden md:block"> Edit lesson</span>
                 </button>
                 <button
                   onClick={() => handleDeleteLesson(lesson._id)}

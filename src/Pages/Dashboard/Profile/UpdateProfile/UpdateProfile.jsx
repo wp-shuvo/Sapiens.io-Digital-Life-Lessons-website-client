@@ -20,8 +20,6 @@ const UpdateProfile = () => {
       navigate('/dashboard/profile');
     } catch (error) {
       toast.error(error.message || 'Failed to update profile');
-    } finally {
-      setLoading(false);
     }
   };
   return (

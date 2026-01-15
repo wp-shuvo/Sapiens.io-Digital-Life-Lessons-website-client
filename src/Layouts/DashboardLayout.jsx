@@ -7,6 +7,7 @@ import {
   FiMenu,
   FiBell,
   FiHome,
+  FiUsers,
 } from 'react-icons/fi';
 import logo from '../assets/assetsImage/navLogo-black.svg';
 import useAuth from '../Hooks/useAuth';
@@ -14,10 +15,31 @@ import { MdAddTask } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { FaRegStar, FaTasks } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
+import useRole from '../Hooks/useRole';
+import { CiBoxList } from 'react-icons/ci';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Loading from '../Components/ErrorPage/Loading';
+import { useQuery } from '@tanstack/react-query';
 
 const DashboardLayout = () => {
   const { user, singOutUser } = useAuth();
   const navigate = useNavigate();
+  const { role, roleLoading } = useRole();
+
+  const axiousSecure = useAxiosSecure();
+
+  // get user
+  const { data: userData = {}, isLoading: userDataLoading } = useQuery({
+    queryKey: ['userData', user?.email],
+    queryFn: async () => {
+      const res = await axiousSecure.get(`/users/email/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  if (userDataLoading) {
+    return <Loading />;
+  }
 
   const handleSignOut = () => {
     singOutUser()
@@ -30,6 +52,7 @@ const DashboardLayout = () => {
         console.log(error);
       });
   };
+
   const Menu = () => (
     <nav className="flex flex-col px-4 py-6 space-y-1 text-[#03373d]">
       <span className="text-xs font-bold text-gray-600 px-3">MENU</span>
@@ -46,37 +69,65 @@ const DashboardLayout = () => {
           <FiHome /> Dashboard
         </NavLink>
 
-        <NavLink
-          to="/dashboard/add-lesson"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
-              isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
-            }`
-          }
-        >
-          <MdAddTask /> Add lesson
-        </NavLink>
+        {role == 'user' && !roleLoading && (
+          <>
+            <NavLink
+              to="/dashboard/add-lesson"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <MdAddTask /> Add lesson
+            </NavLink>
 
-        <NavLink
-          to="/dashboard/my-lessons"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
-              isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
-            }`
-          }
-        >
-          <FaTasks /> My lessons
-        </NavLink>
-        <NavLink
-          to="/dashboard/save-lessons"
-          className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
-              isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
-            }`
-          }
-        >
-          <FaRegStar /> Fav Lessons
-        </NavLink>
+            <NavLink
+              to="/dashboard/my-lessons"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <FaTasks /> My lessons
+            </NavLink>
+            <NavLink
+              to="/dashboard/save-lessons"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <FaRegStar /> Fav Lessons
+            </NavLink>
+          </>
+        )}
+        {role == 'admin' && !roleLoading && (
+          <>
+            <NavLink
+              to="/dashboard/admin/manage-users"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <FiUsers /> Manage Users
+            </NavLink>
+            <NavLink
+              to="/dashboard/admin/manage-lessons"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <CiBoxList /> Manage lessons
+            </NavLink>
+          </>
+        )}
       </>
 
       <span className="text-xs font-bold text-gray-400 px-3 mt-6">GENERAL</span>
@@ -139,7 +190,7 @@ const DashboardLayout = () => {
           <FiMenu size={22} />
         </label>
 
-        <Link>
+        <Link to="/">
           <img src={logo} className="h-9" />
         </Link>
         <FiBell size={22} />
@@ -169,13 +220,15 @@ const DashboardLayout = () => {
             <FiBell size={20} className="text-gray-600 cursor-pointer" />
             <div className="flex items-center gap-3">
               <img
-                src={user?.photoURL}
+                src={userData?.photoURL}
                 alt="Avatar"
                 className="w-10 h-10 rounded-full border"
               />
               <div>
-                <p className="font-semibold">{user?.displayName}</p>
-                <p className="text-gray-400 text-sm font-bold">{user?.email}</p>
+                <p className="font-semibold">{userData?.displayName}</p>
+                <p className="text-gray-400 text-sm font-bold">
+                  {userData?.email}
+                </p>
               </div>
             </div>
           </div>

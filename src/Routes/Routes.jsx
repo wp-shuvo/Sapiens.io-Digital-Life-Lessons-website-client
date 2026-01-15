@@ -26,6 +26,9 @@ import LessonDetails from '../Pages/LessonDetails/LessonDetails';
 import SaveLessons from '../Pages/Dashboard/SaveLesson/SaveLessons';
 import UpdateLesson from '../Pages/Dashboard/UpdateLesson/UpdateLesson';
 import DashboardHome from '../Pages/Dashboard/Dashboard/DashboardHome';
+import AdminRoute from './AdminRoute';
+import ManageUsers from '../Pages/Dashboard/AdminDashboard/ManageUsers/ManageUsers';
+import ManageLessons from '../Pages/Dashboard/AdminDashboard/ManageLessons/ManageLessons';
 
 const Routes = createBrowserRouter([
   {
@@ -119,6 +122,22 @@ const Routes = createBrowserRouter([
       {
         path: 'add-lesson',
         element: <Addlesson />,
+      },
+      {
+        path: 'admin/manage-users',
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'admin/manage-lessons',
+        element: (
+          <AdminRoute>
+            <ManageLessons />
+          </AdminRoute>
+        ),
       },
       {
         path: 'my-lessons',
