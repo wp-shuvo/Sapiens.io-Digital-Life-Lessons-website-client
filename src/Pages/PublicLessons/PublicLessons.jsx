@@ -5,7 +5,7 @@ import { FaLock } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Loading from '../../Components/ErrorPage/Loading';
 import useAuth from '../../Hooks/useAuth';
-import useIsPremium from '../../Hooks/useisPremium';
+import useIsPremium from '../../Hooks/useIsPremium';
 
 const PublicLessons = () => {
   const { user } = useAuth();
