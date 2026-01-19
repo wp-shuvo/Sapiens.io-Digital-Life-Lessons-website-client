@@ -1,5 +1,5 @@
 import React from 'react';
-import useIsPremium from '../../../Hooks/useisPremium';
+import useIsPremium from '../../../Hooks/useIsPremium';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
