@@ -82,7 +82,7 @@ const Navbar = () => {
         </li>
       )}
 
-      {user && (
+      {role === 'user' && (
         <>
           <li>
             <NavLink
@@ -109,6 +109,20 @@ const Navbar = () => {
             </NavLink>
           </li>
         </>
+      )}
+      {role === 'admin' && (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `font-semibold ${
+                isActive ? 'text-[#33929d]' : 'text-black font-extrabold'
+              }`
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
       )}
       <li>
         <NavLink
@@ -235,6 +249,26 @@ const Navbar = () => {
                           Dashboard
                         </Link>
                       </li>
+                      {role === 'admin' && (
+                        <>
+                          <li>
+                            <Link
+                              to="/dashboard/admin/manage-users"
+                              className="px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
+                            >
+                              Manage Users
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/dashboard/admin/manage-lessons"
+                              className="px-5 py-2 rounded-lg border border-[#C8E661] text-black font-semibold hover:bg-[#C8E661] hover:text-black transition"
+                            >
+                              Manage Lessons
+                            </Link>
+                          </li>
+                        </>
+                      )}
                       <li>
                         <Link
                           to="/dashboard/profile"
