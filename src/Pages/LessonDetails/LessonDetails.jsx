@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import useAuth from '../../Hooks/useAuth';
@@ -12,6 +12,7 @@ const LessonDetails = () => {
   const [comment, setComment] = useState('');
   const [reportReason, setReportReason] = useState('');
   const reportRef = useRef();
+  const navigate = useNavigate();
 
   // views
   const formatview = num => {
@@ -307,7 +308,10 @@ const LessonDetails = () => {
               <figure className="h-40 overflow-hidden">
                 <img src={r.image} />
               </figure>
-              <div className="card-body">
+              <div
+                onClick={() => navigate(`/publicLessons/${r._id}`)}
+                className="card-body"
+              >
                 <h4 className="font-semibold">{r.title}</h4>
               </div>
             </div>

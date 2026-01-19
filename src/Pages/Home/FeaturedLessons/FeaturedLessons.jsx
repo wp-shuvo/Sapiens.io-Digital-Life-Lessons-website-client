@@ -15,6 +15,8 @@ const FeaturedLessons = () => {
     },
   });
 
+  // console.log(featured);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -25,8 +27,9 @@ const FeaturedLessons = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Featured Life Lessons
         </h2>
-        <p className="mt-4 text-gray-600 mb-8">
-          Discover the best life lessons from our experts.
+        <p className="mt-4 text-gray-600 mb-8 max-w-2xl mx-auto">
+          Discover the best life lessons from our experts. Learn from real-life
+          experiences and grow with wisdom.
         </p>
       </div>
 

@@ -17,6 +17,7 @@ import { FaRegStar, FaTasks } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
 import useRole from '../Hooks/useRole';
 import { CiBoxList } from 'react-icons/ci';
+import { GoReport } from 'react-icons/go';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Loading from '../Components/ErrorPage/Loading';
 import { useQuery } from '@tanstack/react-query';
@@ -125,6 +126,16 @@ const DashboardLayout = () => {
               }
             >
               <CiBoxList /> Manage lessons
+            </NavLink>
+            <NavLink
+              to="/dashboard/admin/reported-lessons"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg font-medium ${
+                  isActive ? 'bg-[#caeb66] text-[#03373d]' : 'text-gray-600'
+                }`
+              }
+            >
+              <GoReport /> Reported Lessons
             </NavLink>
           </>
         )}

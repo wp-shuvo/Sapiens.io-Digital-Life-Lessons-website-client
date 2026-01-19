@@ -21,7 +21,7 @@ const ManageUsers = () => {
     },
   });
 
-  console.log(users);
+  // console.log(users);
 
   //make admin
 
