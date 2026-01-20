@@ -23,8 +23,7 @@ sharing wisdom.
   sync.
 - **Community Features**: Likes, favorites, comments, reports, and top
   contributor listings.
-- **Dynamic Content**: Featured lessons, top contributors, and most saved
-  lessons sections.
+- **Dynamic Content**: Featured lessons, top contributors.
 - **Responsive UI**: Clean, modern interface using React, TailwindCSS, and
   DaisyUI.
 - **Engagement**: Share lessons, report inappropriate content, view lesson
