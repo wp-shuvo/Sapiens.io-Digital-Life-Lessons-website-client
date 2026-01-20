@@ -1,7 +1,7 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import useIsPremium from '../../Hooks/useisPremium';
+import useIsPremium from '../../Hooks/useIsPremium';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import useRole from '../../Hooks/useRole';

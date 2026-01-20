@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useForm } from 'react-hook-form';
-import useIsPremium from '../../../Hooks/useisPremium';
+import useIsPremium from '../../../Hooks/useIsPremium';
 import toast from 'react-hot-toast';
 
 const UpdateLesson = () => {

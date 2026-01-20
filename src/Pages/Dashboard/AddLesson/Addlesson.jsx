@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import useIsPremium from '../../../Hooks/useisPremium';
+import useIsPremium from '../../../Hooks/useIsPremium';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 

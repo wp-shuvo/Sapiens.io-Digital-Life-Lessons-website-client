@@ -4,7 +4,7 @@ import NavLogo from '../../assets/assetsImage/navLogo-black.svg';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io';
-import useIsPremium from '../../Hooks/useisPremium';
+import useIsPremium from '../../Hooks/useIsPremium';
 import Loading from '../ErrorPage/Loading';
 import useRole from '../../Hooks/useRole';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
