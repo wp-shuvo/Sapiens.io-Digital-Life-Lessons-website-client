@@ -133,7 +133,13 @@ Check out the live client site here:
 
 **User Dashboard**
 
-  <img height="full" src="https://media.licdn.com/dms/image/v2/C4E12AQE1HWdIDDkyEA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1646907885048?e=2147483647&v=beta&t=3VmcE5VqzNPxAHlx6WJdBCVNvDs1x6InIFLjQp5lrLE"  /> 
+  <img height="full" src="https://i.ibb.co.com/FkHbgmkB/Screenshot-2026-01-23-105351.png"  /> 
+
+---
+
+**Admin Dashboard**
+
+  <img height="full" src="https://i.ibb.co.com/ks1Q5H5d/Screenshot-2026-01-23-110223.png"  /> 
 
 ---
 
