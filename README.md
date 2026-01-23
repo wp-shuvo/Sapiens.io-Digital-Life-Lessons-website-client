@@ -131,6 +131,9 @@ Check out the live client site here:
 
 ---
 
-This setup ensures Sapiens.io is fully functional, interactive, and provides a
-rich experience for both free and premium users while keeping admin moderation
-and analytics in focus.
+**User Dashboard**
+
+  <img height="full" src="https://media.licdn.com/dms/image/v2/C4E12AQE1HWdIDDkyEA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1646907885048?e=2147483647&v=beta&t=3VmcE5VqzNPxAHlx6WJdBCVNvDs1x6InIFLjQp5lrLE"  /> 
+
+---
+
