@@ -37,7 +37,7 @@ const DashboardUser = () => {
     return <Loading />;
   }
   return (
-    <div className="p-6 space-y-6">
+    <div className="md:p-6 space-y-6">
       {/* Stats */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="card bg-base-200 p-4">
@@ -53,7 +53,7 @@ const DashboardUser = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-wrap items-center">
         <Link to="/dashboard/add-lesson" className="btn ">
           ➕ Add Lesson
         </Link>

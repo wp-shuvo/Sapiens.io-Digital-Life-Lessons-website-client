@@ -45,7 +45,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="min-h-screen bg-gray-50 py-16 px-6">
+      <div className="min-h-screen bg-gray-50 md:py-16 md:px-6">
         <div className=" mx-auto">
           {/* Header */}
           <h1 className="text-3xl font-bold text-gray-900 mb-6">My Profile</h1>
@@ -119,7 +119,7 @@ const Profile = () => {
           {role === 'user' && (
             <>
               <div>
-                <div className="min-h-screen bg-gray-50 py-16 px-6">
+                <div className="min-h-screen bg-gray-50 md:py-16 md:px-6 mt-12">
                   <h1 className="text-3xl font-bold text-gray-900 mb-6">
                     My Lessons
                   </h1>
