@@ -23,8 +23,7 @@ sharing wisdom.
   sync.
 - **Community Features**: Likes, favorites, comments, reports, and top
   contributor listings.
-- **Dynamic Content**: Featured lessons, top contributors, and most saved
-  lessons sections.
+- **Dynamic Content**: Featured lessons, top contributors.
 - **Responsive UI**: Clean, modern interface using React, TailwindCSS, and
   DaisyUI.
 - **Engagement**: Share lessons, report inappropriate content, view lesson
@@ -132,6 +131,15 @@ Check out the live client site here:
 
 ---
 
-This setup ensures Sapiens.io is fully functional, interactive, and provides a
-rich experience for both free and premium users while keeping admin moderation
-and analytics in focus.
+**User Dashboard**
+
+  <img height="full" src="https://i.ibb.co.com/FkHbgmkB/Screenshot-2026-01-23-105351.png"  /> 
+
+---
+
+**Admin Dashboard**
+
+  <img height="full" src="https://i.ibb.co.com/ks1Q5H5d/Screenshot-2026-01-23-110223.png"  /> 
+
+---
+
